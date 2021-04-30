@@ -58,7 +58,7 @@
         <div class="content-wrapper content bg-dark">
             <div class="px-3 w-100 my-3 h-80">
                 <div class="bookDiv" id="bookDetails">
-                    <table class="table table-striped bg-dark">
+                    <table class="table bg-dark">
                         <thead class="bg-primary">
                             <th style="width: 10%;">Book ID</th>
                             <th style="width: 30%;">Book Name</th>
@@ -70,40 +70,6 @@
                         </thead>
                         <tbody>
                             <% for(let i=0;i<data.length;i++){ %>
-                            <tr>
-                                <td><%=data[i]["bookId"] %></td>
-                                <td><%=data[i]["name"] %></td>
-                                <td><%=data[i]["cost"] %></td>
-                                <td><%=data[i]["author"] %></td>
-                                <td><%=data[i]["stock"] %></td>
-                                <td style="padding: 12px 0px !important;">
-                                    <a class="btn w-50 btn-primary" title="Edit" href="/edit?id=<%= data[i]["bookId"] %>">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                </td>
-                                <td style="padding: 12px 0px !important;">
-                                    <a class="btn w-50 btn-danger" title="Delete" href="/delete?id=<%= data[i]["bookId"] %>">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><%=data[i]["bookId"] %></td>
-                                <td><%=data[i]["name"] %></td>
-                                <td><%=data[i]["cost"] %></td>
-                                <td><%=data[i]["author"] %></td>
-                                <td><%=data[i]["stock"] %></td>
-                                <td style="padding: 12px 0px !important;">
-                                    <a class="btn w-50 btn-primary" title="Edit" href="/edit?id=<%= data[i]["bookId"] %>">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                </td>
-                                <td style="padding: 12px 0px !important;">
-                                    <a class="btn w-50 btn-danger" title="Delete" href="/delete?id=<%= data[i]["bookId"] %>">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
                             <tr>
                                 <td><%=data[i]["bookId"] %></td>
                                 <td><%=data[i]["name"] %></td>
@@ -144,7 +110,8 @@
         let printBtn=document.getElementById("print");
         let bookDetails=document.getElementById("bookDetails");
         printBtn.onclick=async ()=>{
-            var newWindow=await window.open("","BookDetails","");
+            var newWindow=await window.open("","","");
+            await newWindow.document.write("<link rel='stylesheet' href='style.css'><link rel='stylesheet' href='AdminLTE/plugins/fontawesome-free/css/all.min.css'><link rel='stylesheet' href='AdminLTE/dist/css/adminlte.min.css'>");
             await newWindow.document.write(bookDetails.innerHTML);
             await newWindow.focus();
             await newWindow.stop();
@@ -158,6 +125,5 @@
             sideBar.classList.toggle("active");
         }
     </script>
-    <script src="https://kit.fontawesome.com/23ee58b93c.js" crossorigin="anonymous"></script>
 </body>
 </html>
