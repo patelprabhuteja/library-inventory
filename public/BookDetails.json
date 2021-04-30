@@ -1,0 +1,51 @@
+[
+    {
+        "bookId": "BK1",
+        "name": "Clean Code: A Handbook of Agile Software Craftsmanship",
+        "cost": "867",
+        "author": "Robert C. Martin",
+        "stock": "29"
+    },
+    {
+        "bookId": "BK2",
+        "name": "Introduction to Algorithms",
+        "cost": "990",
+        "author": "Thomas H. Cormen",
+        "stock": "20"
+    },
+    {
+        "bookId": "BK3",
+        "name": "Structure and Interpretation of Computer Programs",
+        "cost": "649",
+        "author": "Harold Abelson",
+        "stock": "15"
+    },
+    {
+        "bookId": "BK4",
+        "name": "The Pragmatic Programmer",
+        "cost": "2677",
+        "author": "Andrew Hunt, David Thomas",
+        "stock": "30"
+    },
+    {
+        "bookId": "BK5",
+        "name": "Refactoring: Improving the Design of Existing Code",
+        "cost": "2500",
+        "author": "Martin Fowler",
+        "stock": "50"
+    },
+    {
+        "bookId": "BK6",
+        "name": "Web Design with HTML and CSS",
+        "cost": "3332",
+        "author": "Jon Duckett",
+        "stock": "10"
+    },
+    {
+        "bookId": "BK7",
+        "name": "Core Java - Fundamentals",
+        "cost": "3213",
+        "author": "Cay S. Horstmann",
+        "stock": "15"
+    }
+]

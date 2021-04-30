@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Details</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="AdminLTE/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="AdminLTE/dist/css/adminlte.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini">
+    <nav class="main-header navbar navbar-expand-sm navbar-dark">
+        <ul class="navbar-nav">
+            <li class="title nav-item text-white">
+                <a class="brand-link" href="/">Library Management</a>
+            </li>
+        </ul>
+        <ul class="nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button" id="collapse">
+                    <i class="fas fa-bars"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="wrapper">
+        <div class="sideBar active" id="sideBar">
+            <nav class="main-sidebar sidebar-dark-primary elevation-4">
+                <ul class="sidebar">
+                    <li>
+                        <a href="/" class="btn btn-primary">Home</a>
+                    </li>
+                    <li>
+                        <a href="/addBook" class="btn btn-primary">Add Book</a>
+                    </li>
+                    <li>
+                        <a href="/" id="print" class="btn w-75 py-2 btn-primary">
+                            <i class="fas fa-print"></i>
+                            Print/Download PDF
+                        </a>
+                    </li>
+                    <li>
+                        <a id="print" class="btn btn-block py-2 mx-2 btn-primary" href="BookDetails.xlsx" download>
+                            <i class="fas fa-downlaod"></i>
+                            Download Excel
+                        </a>
+                    </li>
+                    <li>
+                        <a id="print" class="btn btn-block py-2 mx-2 btn-primary" href="BookDetails.json" download>
+                            <i class="fas fa-downlaod"></i>
+                            Download JSON
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="content-wrapper content bg-dark">
+            <div class="px-3 d-flex justify-content-center w-100 my-5">
+                <form class="addForm" autocomplete="off" spellcheck="false" action="/edit" method="POST">
+                    <div class="error"><%= error %></div>
+                    <div class="form-floating">
+                        <label for="bookId">Enter Book ID</label>
+                        <input type="text" class="form-control" name="bookId" id="bookId" placeholder="BK10" style="cursor: no-drop;" readonly value="<%= data["bookId"] %>"/>
+                    </div>
+                    <div class="form-floating">
+                        <label for="name">Enter Book Name</label>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="JAVA" style="cursor: no-drop;" readonly value="<%= data["name"] %>"/>
+                    </div>
+                    <div class="form-floating">
+                        <label for="cost">Enter Cost</label>
+                        <input type="number" class="form-control" name="cost" id="cost" min="0" placeholder="1000" value="<%=data["cost"] %>"/>
+                    </div>
+                    <div class="form-floating">
+                        <label for="author">Enter Author Name</label>
+                        <input type="text" class="form-control" name="author" id="author" placeholder="Author" style="cursor: no-drop;" readonly value="<%= data["author"] %>"/>
+                    </div>
+                    <div class="form-floating">
+                        <label for="stock">Enter Stock</label>
+                        <input type="number" class="form-control" name="stock" id="stock" min="0" placeholder="10" value="<%= data["stock"] %>"/>
+                    </div>
+                    <button class="btn btn-success" type="submit">Update Book Details</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        let inputs=document.getElementsByClassName("form-control");
+        for(let i=0;i<inputs.length;i++){
+            inputs[i].oninput=()=>{
+                let value=inputs[i].value;
+                value=value.trim("");
+                if(value===""){
+                    inputs[i].classList.add("is-invalid");
+                }
+                else{
+                    inputs[i].classList.remove('is-invalid');
+                    inputs[i].classList.add("is-valid");
+                }
+            }
+            inputs[i].onclick=()=>{
+                let value=inputs[i].value;
+                value=value.trim("");
+                if(value===""){
+                    inputs[i].classList.add("is-invalid");
+                }
+                else{
+                    inputs[i].classList.remove('is-invalid');
+                    inputs[i].classList.add("is-valid");
+                }
+            }
+            inputs[i].onfocus=()=>{
+                let value=inputs[i].value;
+                value=value.trim("");
+                if(value===""){
+                    inputs[i].classList.add("is-invalid");
+                }
+                else{
+                    inputs[i].classList.remove('is-invalid');
+                    inputs[i].classList.add("is-valid");
+                }
+            }
+        }
+    </script>
+    <script>
+        let collapseBtn=document.getElementById("collapse");
+        let sideBar=document.getElementById("sideBar");
+        collapseBtn.onclick=()=>{
+            sideBar.classList.toggle("active");
+        };
+    </script>
+    <script src="https://kit.fontawesome.com/23ee58b93c.js" crossorigin="anonymous"></script>
+</body>
+</html>

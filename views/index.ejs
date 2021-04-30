@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Inventory Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="AdminLTE/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="AdminLTE/dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition sidebar-mini">
+    <nav class="main-header navbar navbar-expand-sm navbar-dark">
+        <ul class="navbar-nav">
+            <li class="title nav-item">
+                <a class="brand-link" href="/">Library Management</a>
+            </li>
+        </ul>
+        <ul class="nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button" id="collapse">
+                    <i class="fas fa-bars"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="wrapper">
+        <div class="sideBar active" id="sideBar">
+            <nav class="main-sidebar sidebar-dark-primary elevation-4">
+                <ul class="sidebar">
+                    <li>
+                        <a href="/" class="btn btn-primary">Home</a>
+                    </li>
+                    <li>
+                        <a href="/addBook" class="btn btn-primary">Add Book</a>
+                    </li>
+                    <li>
+                        <a id="print" class="btn py-2 btn-primary">
+                            <i class="fas fa-print"></i>
+                            Print/Download PDF
+                        </a>
+                    </li>
+                    <li>
+                        <a id="print" class="btn btn-block py-2 mx-2 btn-primary" href="BookDetails.xlsx" download>
+                            <i class="fas fa-downlaod"></i>
+                            Download Excel
+                        </a>
+                    </li>
+                    <li>
+                        <a id="print" class="btn btn-block py-2 mx-2 btn-primary" href="BookDetails.json" download>
+                            <i class="fas fa-downlaod"></i>
+                            Download JSON
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="content-wrapper content bg-dark">
+            <div class="px-3 w-100 my-3 h-80">
+                <div class="bookDiv" id="bookDetails">
+                    <table class="table table-striped bg-dark">
+                        <thead class="bg-primary">
+                            <th style="width: 10%;">Book ID</th>
+                            <th style="width: 30%;">Book Name</th>
+                            <th style="width: 10%;">Cost</th>
+                            <th style="width: 20%;">Author</th>
+                            <th style="width: 10%;">Stocks Available</th>
+                            <th style="width: 10%;"></th>
+                            <th style="width: 10%;"></th>
+                        </thead>
+                        <tbody>
+                            <% for(let i=0;i<data.length;i++){ %>
+                            <tr>
+                                <td><%=data[i]["bookId"] %></td>
+                                <td><%=data[i]["name"] %></td>
+                                <td><%=data[i]["cost"] %></td>
+                                <td><%=data[i]["author"] %></td>
+                                <td><%=data[i]["stock"] %></td>
+                                <td style="padding: 12px 0px !important;">
+                                    <a class="btn w-50 btn-primary" title="Edit" href="/edit?id=<%= data[i]["bookId"] %>">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </td>
+                                <td style="padding: 12px 0px !important;">
+                                    <a class="btn w-50 btn-danger" title="Delete" href="/delete?id=<%= data[i]["bookId"] %>">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><%=data[i]["bookId"] %></td>
+                                <td><%=data[i]["name"] %></td>
+                                <td><%=data[i]["cost"] %></td>
+                                <td><%=data[i]["author"] %></td>
+                                <td><%=data[i]["stock"] %></td>
+                                <td style="padding: 12px 0px !important;">
+                                    <a class="btn w-50 btn-primary" title="Edit" href="/edit?id=<%= data[i]["bookId"] %>">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </td>
+                                <td style="padding: 12px 0px !important;">
+                                    <a class="btn w-50 btn-danger" title="Delete" href="/delete?id=<%= data[i]["bookId"] %>">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><%=data[i]["bookId"] %></td>
+                                <td><%=data[i]["name"] %></td>
+                                <td><%=data[i]["cost"] %></td>
+                                <td><%=data[i]["author"] %></td>
+                                <td><%=data[i]["stock"] %></td>
+                                <td style="padding: 12px 0px !important;">
+                                    <a class="btn w-50 btn-primary" title="Edit" href="/edit?id=<%= data[i]["bookId"] %>">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </td>
+                                <td style="padding: 12px 0px !important;">
+                                    <a class="btn w-50 btn-danger" title="Delete" href="/delete?id=<%= data[i]["bookId"] %>">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="w-100 d-flex justify-content-center">
+                <div class="w-98 d-flex">
+                    <div class="w-50">
+                        <button class="w-25 btn btn-success" id="download">
+                            Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let collapseBtn=document.getElementById("collapse");
+        let download=document.getElementById("download");
+        let sideBar=document.getElementById("sideBar");
+        let printBtn=document.getElementById("print");
+        let bookDetails=document.getElementById("bookDetails");
+        printBtn.onclick=async ()=>{
+            var newWindow=await window.open("","BookDetails","");
+            await newWindow.document.write(bookDetails.innerHTML);
+            await newWindow.focus();
+            await newWindow.stop();
+            await newWindow.print();
+            await newWindow.close();
+        };
+        collapseBtn.onclick=()=>{
+            sideBar.classList.toggle("active");
+        };
+        download.onclick=()=>{
+            sideBar.classList.toggle("active");
+        }
+    </script>
+    <script src="https://kit.fontawesome.com/23ee58b93c.js" crossorigin="anonymous"></script>
+</body>
+</html>
